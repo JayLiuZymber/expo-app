@@ -1,23 +1,41 @@
 /* 
-Safe areas - Expo Documentation
-https://docs.expo.dev/develop/user-interface/safe-areas/
+Fonts - Expo Documentation
+https://docs.expo.dev/develop/user-interface/fonts/
  */
-import { Text, View } from 'react-native';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useCallback } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
-function HomeScreen() {
-  const insets = useSafeAreaInsets();
+SplashScreen.preventAutoHideAsync();
+
+export default function App() {
+  const [fontsLoaded, fontError] = useFonts({
+    'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
-    <View style={{ flex: 1, paddingTop: insets.top }}>
-      <Text style={{ fontSize: 28 }}>Content is in safe area.</Text>
+    <View style={styles.container} onLayout={onLayoutRootView}>
+      <Text style={{ fontFamily: 'Inter-Black', fontSize: 30 }}>Inter Black</Text>
+      <Text style={{ fontSize: 30 }}>Platform Default</Text>
     </View>
   );
 }
 
-export default function App() {
-  return (
-    <SafeAreaProvider>
-      <HomeScreen />
-    </SafeAreaProvider>
-  );
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
