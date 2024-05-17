@@ -4,8 +4,7 @@
     "slug": "expo-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "_icon": "./assets/icon.png",
-    "icon": "./assets/5296671_asian_bowl_food_japanese_noodle_icon.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -17,8 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "_foregroundImage": "./assets/adaptive-icon.png",
-        "foregroundImage": "./assets/5296671_asian_bowl_food_japanese_noodle_icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
