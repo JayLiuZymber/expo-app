@@ -2,32 +2,22 @@
 Fonts - Expo Documentation
 https://docs.expo.dev/develop/user-interface/fonts/
  */
-import { useCallback } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-
-SplashScreen.preventAutoHideAsync();
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
 export default function App() {
-  const [fontsLoaded, fontError] = useFonts({
-    'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
+  let [fontsLoaded, fontError] = useFonts({
+    Inter_900Black,
   });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded && !fontError) {
     return null;
   }
 
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
-      <Text style={{ fontFamily: 'Inter-Black', fontSize: 30 }}>Inter Black</Text>
-      <Text style={{ fontSize: 30 }}>Platform Default</Text>
+    <View style={styles.container}>
+      <Text style={{ fontFamily: 'Inter_900Black', fontSize: 40 }}>Inter Black</Text>
     </View>
   );
 }
