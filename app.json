@@ -4,24 +4,21 @@
     "slug": "expo-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "_icon": "./assets/icon.png",
+    "icon": "./assets/5296671_asian_bowl_food_japanese_noodle_icon.png",
     "userInterfaceStyle": "light",
-    "_splash": {
+    "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "splash": {
-      "image": "./assets/steaming-bowl-apple.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#FEF9B0"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "_foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/5296671_asian_bowl_food_japanese_noodle_icon.png",
         "backgroundColor": "#ffffff"
       }
     },

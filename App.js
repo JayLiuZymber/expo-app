@@ -1,6 +1,6 @@
 /* 
-Splash screen - Expo Documentation
-https://docs.expo.dev/develop/user-interface/splash-screen/
+App icons - Expo Documentation
+https://docs.expo.dev/develop/user-interface/app-icons/
  */
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
