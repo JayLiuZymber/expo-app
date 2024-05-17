@@ -2,15 +2,22 @@
 Safe areas - Expo Documentation
 https://docs.expo.dev/develop/user-interface/safe-areas/
  */
-import { View, Text } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Text, View } from 'react-native';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+
+function HomeScreen() {
+  const insets = useSafeAreaInsets();
+  return (
+    <View style={{ flex: 1, paddingTop: insets.top }}>
+      <Text style={{ fontSize: 28 }}>Content is in safe area.</Text>
+    </View>
+  );
+}
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <View>
-        <Text>My App</Text>
-      </View>
+      <HomeScreen />
     </SafeAreaProvider>
   );
 }
