@@ -6,10 +6,15 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
+    "_splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "splash": {
+      "image": "./assets/steaming-bowl-apple.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#FEF9B0"
     },
     "ios": {
       "supportsTablet": true
