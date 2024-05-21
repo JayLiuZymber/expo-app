@@ -3,21 +3,22 @@ Fonts - Expo Documentation
 https://docs.expo.dev/develop/user-interface/fonts/
  */
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import { Text, View, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
 
 export default function App() {
-  let [fontsLoaded, fontError] = useFonts({
-    Inter_900Black,
+  const [fontsLoaded] = useFonts({
+    'Inter-SemiBoldItalic': 'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
   });
 
-  if (!fontsLoaded && !fontError) {
+  if (!fontsLoaded) {
     return null;
   }
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: 'Inter_900Black', fontSize: 40 }}>Inter Black</Text>
+      <Text style={{ fontFamily: 'Inter-SemiBoldItalic', fontSize: 30 }}>Inter SemiBoldItalic</Text>
+      <Text style={{ fontSize: 30 }}>Platform Default</Text>
     </View>
   );
 }
