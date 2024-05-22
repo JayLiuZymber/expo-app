@@ -1,12 +1,44 @@
 /* 
-Assets - Expo Documentation
-https://docs.expo.dev/develop/user-interface/assets/
+Color themes - Expo Documentation
+https://docs.expo.dev/develop/user-interface/color-themes/
  */
-import { Image } from 'expo-image';
+import { Text, StyleSheet, View, useColorScheme } from 'react-native';
+import { StatusBar } from 'expo-status-bar'; // Automatically switches bar style based on theme.
 
 export default function App() {
+  const colorScheme = useColorScheme();
+
+  const themeTextStyle = colorScheme === 'light' ? styles.lightThemeText : styles.darkThemeText;
+  const themeContainerStyle =
+    colorScheme === 'light' ? styles.lightContainer : styles.darkContainer;
+
   return (
-    // <Image source={{ uri: 'https://example.com/logo.png' }} style={{ width: 50, height: 50 }} />
-    <Image source={{ uri: 'https://reactnative.dev/img/showcase/messengerdesktop.png' }} style={{ width: 50, height: 50 }} />
+    <View style={[styles.container, themeContainerStyle]}>
+      <Text style={[styles.text, themeTextStyle]}>Color scheme: {colorScheme}</Text>
+      <StatusBar />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 20,
+  },
+  lightContainer: {
+    backgroundColor: '#d0d0c0',
+  },
+  darkContainer: {
+    backgroundColor: '#242c40',
+  },
+  lightThemeText: {
+    color: '#242c40',
+  },
+  darkThemeText: {
+    color: '#d0d0c0',
+  },
+});
