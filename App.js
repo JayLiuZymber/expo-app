@@ -7,13 +7,14 @@ https://docs.expo.dev/versions/latest/sdk/securestore/
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Button } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import storageUtil from "./utils/storage";
 
 async function save(key, value) {
-  await SecureStore.setItemAsync(key, value);
+  await storageUtil.setItem(key, value);
 }
 
 async function getValueFor(key) {
-  let result = await SecureStore.getItemAsync(key);
+  let result = await storageUtil.getItem(key);
   if (result) {
     alert("🔐 Here's your value 🔐 \n" + result);
   } else {
