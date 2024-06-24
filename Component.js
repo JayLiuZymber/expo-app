@@ -16,7 +16,8 @@ const DownloadManager = () => {
 
   const startDownload = async () => {
     const downloadResumable = FileSystem.createDownloadResumable(
-			'http://techslides.com/demos/sample-videos/small.mp4',
+			// 'http://techslides.com/demos/sample-videos/small.mp4',
+      'https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_480_1_5MG.mp4',
 			FileSystem.documentDirectory + 'small.mp4',
 			{},
 			callback
