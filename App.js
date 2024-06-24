@@ -1,37 +1,63 @@
 /* 
-Animation - Expo Documentation
-https://docs.expo.dev/develop/user-interface/animation/
+Store data - Expo Documentation
+https://docs.expo.dev/develop/user-interface/store-data/
+SecureStore - Expo Documentation
+https://docs.expo.dev/versions/latest/sdk/securestore/
  */
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-  Easing,
-} from 'react-native-reanimated';
-import { View, Button, StyleSheet } from 'react-native';
+import * as React from 'react';
+import { Text, View, StyleSheet, TextInput, Button } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
 
-export default function AnimatedStyleUpdateExample() {
-  const randomWidth = useSharedValue(10);
+async function save(key, value) {
+  await SecureStore.setItemAsync(key, value);
+}
 
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
+async function getValueFor(key) {
+  let result = await SecureStore.getItemAsync(key);
+  if (result) {
+    alert("🔐 Here's your value 🔐 \n" + result);
+  } else {
+    alert('No values stored under that key.');
+  }
+}
 
-  const style = useAnimatedStyle(() => {
-    return {
-      width: withTiming(randomWidth.value, config),
-    };
-  });
+export default function App() {
+  const [key, onChangeKey] = React.useState('Your key here');
+  const [value, onChangeValue] = React.useState('Your value here');
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.box, style]} />
+      <Text style={styles.paragraph}>Save an item, and grab it later!</Text>
+      {}
+
+      <TextInput
+        style={styles.textInput}
+        clearTextOnFocus
+        onChangeText={text => onChangeKey(text)}
+        value={key}
+      />
+      <TextInput
+        style={styles.textInput}
+        clearTextOnFocus
+        onChangeText={text => onChangeValue(text)}
+        value={value}
+      />
+      {}
       <Button
-        title="toggle"
+        title="Save this key/value pair"
         onPress={() => {
-          randomWidth.value = Math.random() * 350;
+          save(key, value);
+          onChangeKey('Your key here');
+          onChangeValue('Your value here');
         }}
+      />
+      <Text style={styles.paragraph}>🔐 Enter your key 🔐</Text>
+      <TextInput
+        style={styles.textInput}
+        onSubmitEditing={event => {
+          getValueFor(event.nativeEvent.text);
+        }}
+        placeholder="Enter the key for the value you want to get"
       />
     </View>
   );
@@ -40,13 +66,22 @@ export default function AnimatedStyleUpdateExample() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 10,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
   },
-  box: {
-    width: 100,
-    height: 80,
-    backgroundColor: 'black',
-    margin: 30,
+  paragraph: {
+    marginTop: 34,
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textInput: {
+    height: 35,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    padding: 4,
   },
 });
